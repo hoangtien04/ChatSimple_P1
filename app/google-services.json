@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "328595137826",
+    "project_id": "chatsimple-c5ad1",
+    "storage_bucket": "chatsimple-c5ad1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328595137826:android:30b53f25462feec655b17b",
+        "android_client_info": {
+          "package_name": "com.example.chatsimple_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIgDFDbVO8UngQ7RTPjDJr9wu4prZDxa0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
