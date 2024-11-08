@@ -25,7 +25,16 @@ fun WelcomeScreen(navController: NavController){
     ) {
         Text(text = "Chat simple", fontWeight = FontWeight.Bold,fontSize = 50.sp)
         Button(
-            onClick = { navController.navigate("Đăng nhập") },
+            onClick = { navController.navigate(NavRoute.LOGIN.route) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            shape = RoundedCornerShape(20)
+        ) {
+            Text(text = "Đăng nhập",fontSize = 20.sp,fontWeight = FontWeight.Bold)
+        }
+        Button(
+            onClick = {  navController.navigate(NavRoute.REGISTER.route) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(20.dp),
