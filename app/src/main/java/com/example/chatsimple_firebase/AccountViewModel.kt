@@ -9,7 +9,7 @@ class AccountViewModel:ViewModel(){
     var state by mutableStateOf(AccountState())
         private set
     fun addUser(){
-
+        git remote set-url origin git@gitlab.com:codetot/blog-v2.git
     }
 }
 
