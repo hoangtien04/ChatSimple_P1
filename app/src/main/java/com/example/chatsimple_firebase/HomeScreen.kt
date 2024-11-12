@@ -18,11 +18,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContactListScreen(navController: NavController){
+    var viewModel:HomeViewModel = viewModel(
+        modelClass = HomeViewModel::class.java
+    )
+    var state = viewModel.state
     var list = mutableListOf<User>()
     list.add(User("abc@gmail.com","123456","Hoang Tien"))
     list.add(User("xyz@gmail.com","654321","Tien Hoang"))
@@ -32,7 +39,10 @@ fun ContactListScreen(navController: NavController){
             TopAppBar(title = { Text(text = "Danh sách")},
                 actions = {
                     IconButton(
-                        onClick = { },
+                        onClick = {
+                            viewModel.SignOut()
+                            navController.navigate(NavRoute.WELCOME.route)
+                        }
                     ){
                         Icon(imageVector = Icons.Filled.ExitToApp, contentDescription = "", tint = Color.White)
                     }
@@ -51,8 +61,8 @@ fun ContactListScreen(navController: NavController){
                 .padding(vertical = 10.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            if(list.count() > 0){
-                items(list){
+            if(state.contacList.count() > 0){
+                items(state.contacList){
                     CardInfo(user = it)
                 }
             }
@@ -62,3 +72,4 @@ fun ContactListScreen(navController: NavController){
         }
     }
 }
+
