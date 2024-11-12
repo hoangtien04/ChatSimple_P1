@@ -27,11 +27,48 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(navController: NavController){
+    var viewModel: AccountViewModel = viewModel(
+        modelClass = AccountViewModel::class.java
+    )
+    var state = viewModel.state
+    OutlinedTextField(
+        value = state.fullname,
+        onValueChange = {
+            viewModel.onChangeFullname(it)
+        },
+        placeholder = { Text(text = "Full Name")},
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp),
+    )
+    OutlinedTextField(
+        value = state.email,
+        onValueChange =
+            viewModel::onChangeEmail,
+        placeholder = { Text(text = "Email")},
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp),
+    )
+    OutlinedTextField(
+        value = state.password,
+        onValueChange =
+            viewModel::onChangePassword,
+        placeholder = { Text(text = "Password")},
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        visualTransformation = PasswordVisualTransformation(),
+
+    )
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -91,6 +128,12 @@ fun RegisterScreen(navController: NavController){
             )
             Button(onClick = {
                     //4
+                    viewModel.addUser()
+                    if(state.success){
+                        navController.navigate(NavRoute.LOGIN.route){
+                            launchSingleTop = true
+                        }
+                    }
                 },
                 modifier = Modifier
                     .fillMaxWidth()

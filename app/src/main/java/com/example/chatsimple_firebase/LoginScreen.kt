@@ -27,11 +27,32 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen (navController: NavController){
+    var viewModel: AccountViewModel = viewModel(
+        modelClass = AccountViewModel::class.java
+    )
+    var state = viewModel.state
+    OutlinedTextField(
+        value = state.email,
+        onValueChange = viewModel::onChangeEmail,
+        placeholder = { Text(text = "Email")},
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp),
+    )
+    OutlinedTextField(
+        value = state.password,
+        onValueChange = viewModel::onChangePassword,
+        placeholder = { Text(text = "Password")},
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp),
+    )
     Scaffold(
         topBar = {
             TopAppBar(
@@ -76,6 +97,11 @@ fun LoginScreen (navController: NavController){
                 modifier = Modifier.fillMaxWidth().padding(20.dp),
                 onClick = {
                     //3
+                    viewModel.SignIn()
+                    if(state.success){
+                        navController.navigate(NavRoute.HOME.route)
+
+                    }
                 }
 
             ){
