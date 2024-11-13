@@ -37,22 +37,7 @@ fun LoginScreen (navController: NavController){
         modelClass = AccountViewModel::class.java
     )
     var state = viewModel.state
-    OutlinedTextField(
-        value = state.email,
-        onValueChange = viewModel::onChangeEmail,
-        placeholder = { Text(text = "Email")},
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(20.dp),
-    )
-    OutlinedTextField(
-        value = state.password,
-        onValueChange = viewModel::onChangePassword,
-        placeholder = { Text(text = "Password")},
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(20.dp),
-    )
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -80,18 +65,22 @@ fun LoginScreen (navController: NavController){
         ) {
             Text(text="Chat Simple", fontWeight = FontWeight.ExtraBold, fontSize = 50.sp)
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = state.email,
+                onValueChange = viewModel::onChangeEmail,
                 placeholder = { Text(text = "Email")},
-                modifier = Modifier.padding(20.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
             )
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = state.password,
+                onValueChange = viewModel::onChangePassword,
                 placeholder = { Text(text = "Password")},
-                modifier = Modifier.padding(20.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                visualTransformation = PasswordVisualTransformation()
+                visualTransformation = PasswordVisualTransformation(),
             )
             Button(
                 modifier = Modifier.fillMaxWidth().padding(20.dp),

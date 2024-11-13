@@ -5,6 +5,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -13,6 +14,8 @@ sealed class NavRoute (val route:String){
     object LOGIN:NavRoute("login_screen")
     object REGISTER:NavRoute("register_screen")
     object HOME:NavRoute("contactlist_screen")
+    object CHAT:NavRoute("chat_screen")
+
 
 }
 
@@ -38,6 +41,10 @@ fun NavigatoinGraph(navController: NavHostController){
         }
         composable(NavRoute.HOME.route){
             ContactListScreen(navController)
+        }
+        composable(NavRoute.CHAT.route + "?email={email}", arguments = listOf(navArgument("email"){nullable = false})) {
+            var email = it.arguments?.getString("email")
+            ChatScreen(navController = navController,email?:"")
         }
 
     }

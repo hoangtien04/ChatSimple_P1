@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.chatsimple_firebase"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.chatsimple_firebase"

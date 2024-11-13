@@ -21,12 +21,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CardInfo(user: User){
+fun CardInfo(user: User,onChat:() ->Unit){
     Card(
       modifier = Modifier
           .fillMaxWidth()
           .padding(horizontal = 10.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+        onClick = onChat
     ){
         Row (
             modifier = Modifier.weight(2f)

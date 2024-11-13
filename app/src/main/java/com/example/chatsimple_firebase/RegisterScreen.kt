@@ -37,37 +37,6 @@ fun RegisterScreen(navController: NavController){
         modelClass = AccountViewModel::class.java
     )
     var state = viewModel.state
-    OutlinedTextField(
-        value = state.fullname,
-        onValueChange = {
-            viewModel.onChangeFullname(it)
-        },
-        placeholder = { Text(text = "Full Name")},
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(20.dp),
-    )
-    OutlinedTextField(
-        value = state.email,
-        onValueChange =
-            viewModel::onChangeEmail,
-        placeholder = { Text(text = "Email")},
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(20.dp),
-    )
-    OutlinedTextField(
-        value = state.password,
-        onValueChange =
-            viewModel::onChangePassword,
-        placeholder = { Text(text = "Password")},
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(20.dp),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        visualTransformation = PasswordVisualTransformation(),
-
-    )
 
     Scaffold(
         topBar = {
@@ -100,8 +69,10 @@ fun RegisterScreen(navController: NavController){
                 fontSize = 50.sp
             )
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = state.fullname,
+                onValueChange = {
+                    viewModel.onChangeFullname(it)
+                },
                 placeholder = { Text(text = "Full Name")},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -109,22 +80,24 @@ fun RegisterScreen(navController: NavController){
 
             )
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = state.email,
+                onValueChange =
+                viewModel::onChangeEmail,
                 placeholder = { Text(text = "Email")},
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(20.dp),
             )
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = state.password,
+                onValueChange =
+                viewModel::onChangePassword,
                 placeholder = { Text(text = "Password")},
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(20.dp),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                visualTransformation = PasswordVisualTransformation()
+                visualTransformation = PasswordVisualTransformation(),
             )
             Button(onClick = {
                     //4
