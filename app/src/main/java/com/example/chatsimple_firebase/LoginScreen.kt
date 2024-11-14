@@ -89,7 +89,6 @@ fun LoginScreen (navController: NavController){
                     viewModel.SignIn()
                     if(state.success){
                         navController.navigate(NavRoute.HOME.route)
-
                     }
                 }
 

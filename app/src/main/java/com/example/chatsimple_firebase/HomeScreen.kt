@@ -61,7 +61,7 @@ fun ContactListScreen(navController: NavController){
                 .padding(vertical = 10.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            if(state.contacList.count() >= 0){
+            if(state.contacList.count() > 0){
                 items(state.contacList){
                     CardInfo(user = it,
                         {

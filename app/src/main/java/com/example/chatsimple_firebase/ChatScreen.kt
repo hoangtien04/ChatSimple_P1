@@ -81,7 +81,7 @@ fun ChatScreen(navController: NavController,email:String = "") {
                 onValueChange = viewModel::onChangeMessage,
                 modifier = Modifier.fillMaxWidth(),
                 trailingIcon = {
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = {viewModel.addMessage()}) {
                         Icon(
                             imageVector = Icons.Filled.Send,
                             contentDescription = ""
