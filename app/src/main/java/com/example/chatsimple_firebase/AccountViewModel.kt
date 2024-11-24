@@ -52,5 +52,4 @@ data class AccountState(
     val email:String = "",
     val password:String = "",
     val success:Boolean = false,
-
-)
+) 

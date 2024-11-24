@@ -22,15 +22,15 @@ class  HomeViewModel: ViewModel(){
             var ls  = mutableListOf<User>()
             if(Firebase.auth.currentUser != null) {
                 Firebase.firestore.collection("users")
-                    .whereNotEqualTo("email",Firebase.auth.currentUser!!.email)
-                    .addSnapshotListener{
-                        value, error -> if(value!=null){
+                    .whereNotEqualTo("email",Firebase.auth.currentUser?.email)
+                    .addSnapshotListener{ value, error ->
+                        if(value!=null){
                             for(doc in value){
                                 var user = doc.toObject(User::class.java)
                                 ls.add( user)
                             }
                     }
-                        state = state.copy(contacList = ls)
+                        state = state.copy(contactList = ls)
                 }
             }
         }
@@ -38,7 +38,7 @@ class  HomeViewModel: ViewModel(){
     fun SignOut(){
         FirebaseAuth.getInstance().signOut()
     }
+    data class HomeScreenState(
+        val contactList: List<User> = emptyList()
+    )
 }
-data class HomeScreenState(
-    val contacList: List<User> = emptyList()
-)

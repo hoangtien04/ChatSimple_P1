@@ -31,8 +31,6 @@ fun ContactListScreen(navController: NavController){
     )
     var state = viewModel.state
     var list = mutableListOf<User>()
-    list.add(User("abc@gmail.com","123456","Hoang Tien"))
-    list.add(User("xyz@gmail.com","654321","Tien Hoang"))
 
     Scaffold(
         topBar = {
@@ -61,8 +59,8 @@ fun ContactListScreen(navController: NavController){
                 .padding(vertical = 10.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            if(state.contacList.count() > 0){
-                items(state.contacList){
+            if(state.contactList.count() > 0){
+                items(state.contactList){
                     CardInfo(user = it,
                         {
                             navController.navigate(
